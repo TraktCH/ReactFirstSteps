@@ -1,0 +1,5 @@
+[user]
+	name = TraktCH
+	email = adrianzurawskiii@gmail.com
+[credential]
+	helper = store --file ~/.git-credentials
