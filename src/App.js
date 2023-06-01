@@ -13,11 +13,11 @@ function App() {
   ];
 
   return (
-    <div className="App">
-      {planets.map((planet, key) => {
-        return(
+    <div className='App'>
+      {planets.map((planet,key) => {
+        return (
           <div>
-           {planet.isGasGiant && <DisplayIfGasGiant name={planet.name} key={key}/>}
+            {planet.isGasGiant && <DisplayIfGasGiant name={planet.name} key={key}/>}
           </div>
         );
       })}
