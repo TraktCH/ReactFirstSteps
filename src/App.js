@@ -1,26 +1,26 @@
 import './App.css';
-import {DisplayIfGasGiant} from './DisplayPlanets'
+import {useState} from 'react'
 
 function App() {
 
-  const planets = [
-    {name: "Mars" ,    isGasGiant: false},
-    {name: "Earth" ,   isGasGiant: false},
-    {name: "Jupiter" , isGasGiant: true},
-    {name: "Venus" ,   isGasGiant: false},
-    {name: "Neptune" , isGasGiant: true},
-    {name: "Uranus" ,  isGasGiant: true}
-  ];
+  const [count, setCount] = useState(0);
 
   return (
     <div className='App'>
-      {planets.map((planet,key) => {
-        return (
-          <div>
-            {planet.isGasGiant && <DisplayIfGasGiant name={planet.name} key={key}/>}
-          </div>
-        );
-      })}
+      <button onClick={() => {
+        setCount(count+1);
+      }}>
+        INCREASE</button>
+      <button onClick={() => {
+        setCount(0);
+      }}>
+        SET TO ZERO</button>
+      <button onClick={() => {
+        setCount(count -1);
+      }}>
+        DECREASE</button>
+      <br/>
+      {count}
     </div>
   );
 };
