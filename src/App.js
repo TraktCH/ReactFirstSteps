@@ -4,47 +4,50 @@ import { Task } from './Task'
 
 function App() {
 
-  const [todoList, setTodoList] = useState([]);
-  const [taskName, setTaskName] = useState("");
+  const [newTask,setNewTask] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
-    return setTaskName(event.target.value); 
+    return (
+      setInputValue(event.target.value)
+    );
   }
 
-  const addTodoList = () => {
-    return setTodoList([...todoList,
-       {
-        name: taskName,
-        id: todoList.length === 0 ? 1 : todoList[todoList.length -1].id + 1,
-        completed: false,
-       }]);
-  }
+  const addTask = () => {
+    return (
+      setNewTask([...newTask,
+      {
+        name: inputValue,
+        id: newTask.length===0 ? 1 : newTask[newTask.length-1].id + 1,
+        completed: false
+      }])
+    );
+  } 
 
   const deleteTask = (id) => {
-    setTodoList(todoList.filter((task) => {return task.id !== id})); 
+      setNewTask(newTask.filter((task) => {
+        return task.id === id ? false : true;
+      }))
   }
 
-  const changeCompletion = (id) => {
-    setTodoList(todoList.map((task) => {
-      if(task.id === id){
-        return {...task, completed: !task.completed}
-      }
-      return task;
-    }));
+  const completeTask = (id) => {
+    return (
+      setNewTask(newTask.map((task) => {
+        return task.id === id ? {...task, completed: !task.completed} : task ;
+      }))
+    );
   }
-  
 
   return (
     <div className='App'>
-      <input type='text' onChange={handleChange}/>
-      <button onClick={addTodoList}>Add Task</button>
+      <input onChange={handleChange} />
+      <button onClick={addTask}>Add Task</button>
 
-      {todoList.map((task) => {
+      {newTask.map((task) => {
         return (
-            <Task name={task.name} id={task.id} deleteTask={deleteTask} changeCompletion={changeCompletion} completed={task.completed}/>
+          <Task taskName={task.name} completeTask={completeTask} deleteTask={deleteTask} id={task.id} completed={task.completed}/>
         );
       })}
-
     </div>
   );
 };
